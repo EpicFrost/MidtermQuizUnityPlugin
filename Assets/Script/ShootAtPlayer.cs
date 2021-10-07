@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ShootAtPlayer : MonoBehaviour
 {
+    const string dll = "EnemyModifier";
+    [DllImport(dll)]
+    private static extern float setHitProbability();
+
     public float FiringDelay = 3.0f;
-    public float playerHitChance = 0.25f;
+    public float playerHitChance = setHitProbability();
     private bool isLoaded = false;
     private float loadingTime = 0.0f;
 
     public GameObject player;
 
-    // Start is called before the first frame update
     void Start()
-    {
+    { 
     }
 
     // Update is called once per frame
